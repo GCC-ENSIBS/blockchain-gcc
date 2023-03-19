@@ -1,0 +1,21 @@
+version: "3"
+services:
+  app:
+    build: .
+    volumes:
+      - ./files:/app/files
+    container_name: blockchain-web
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.blockchain-web.entrypoints=web,websecure"
+      - "traefik.http.routers.blockchain-web.rule=Host(`blockchain.gcc-ensibs.fr`)"
+      - "traefik.http.services.blockchain-web.loadbalancer.server.port=8000"
+      - "traefik.http.routers.blockchain-web.tls=true"
+      - "traefik.http.routers.blockchain-web.tls.certresolver=lets-encrypt"
+
+networks:
+  web:
+    external: true
