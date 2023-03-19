@@ -47,6 +47,7 @@ const deployLucky = async () => {
         {
             data: incrementerTx.encodeABI(),
             gas: await incrementerTx.estimateGas(),
+            value: web3.utils.toWei('10', 'ether'),
         },
         config.privateKey
     );

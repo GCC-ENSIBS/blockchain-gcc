@@ -6,7 +6,7 @@ export default function Faucet() {
     return (
         <>
             <Head>
-                <title>Calculator</title>
+                <title>Faucet</title>
             </Head>
             <Header active="/faucet"/>
             <div class="flex flex-col items-center justify-center my-8 ">

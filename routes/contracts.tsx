@@ -10,22 +10,11 @@ export default function Contracts() {
                 <title>Contracts</title>
             </Head>
             <Header active="/contracts"/>
-            <div class="flex flex-col items-center justify-center my-8">
-                <h1 class={"text-center text-4xl font-bold mt-12 "}>Lucky</h1>
-                <code style={"white-space: pre-line;white-space: pre-wrap;"}
-                      class="items-center text-md font-bold mt-4 mx-auto rounded-xl bg-gray-100 p-4">
-                    {lucky_code}
-                </code>
-                <Contract contract={"lucky"} />
+            <div class="flex flex-col items-center justify-center">
+                <Contract contract={"lucky"} title={"Lucky"} code={lucky_code} />
+                <Contract contract={"randomgame"} title={"RandomGame"} code={randomgame_code}/>
             </div>
-            <div className="flex flex-col items-center justify-center my-8">
-                <h1 className={"text-center text-4xl font-bold mt-12 "}>RandomGame</h1>
-                <code style={"white-space: pre-line;white-space: pre-wrap;"}
-                      className="items-center text-md font-bold mt-4 mx-auto rounded-xl bg-gray-100 p-4">
-                    {randomgame_code}
-                </code>
-                <Contract contract={"randomgame"}/>
-            </div>
+
 
         </>
     );
