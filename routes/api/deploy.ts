@@ -16,6 +16,13 @@ export const handler: Handlers<Data, WithSession> = {
             return new Response(JSON.stringify({address: ctx.state.session.get(contract)}), {status:200});
         }
 
+        switch(contract) {
+            case "calculator":
+                break;
+            default:
+                break
+        }
+
         const address = await deploy();
         ctx.state.session.set(contract, address);
         return new Response(JSON.stringify({address: address}), {status:200})
