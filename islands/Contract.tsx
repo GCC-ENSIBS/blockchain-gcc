@@ -1,9 +1,14 @@
 import {useSignal} from "@preact/signals";
 
-export default function Contract() {
+interface Props {
+    contract: string
+}
+
+export default function Contract({contract}: Props) {
     let contractAddress = useSignal("Not deployed yet !")
 
     function handleClick() {
+        contractAddress.value = "Deploying..."
         // request to /api/deploy
         fetch("/api/deploy", {
             method: "POST",
@@ -11,7 +16,7 @@ export default function Contract() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                contract: "calculator"
+                contract: contract
             }),
         }).then((res) => res.json()).then((data) => {
             contractAddress.value = `Contract deployed at ${data.address}`

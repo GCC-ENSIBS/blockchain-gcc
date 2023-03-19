@@ -7,7 +7,7 @@ type Props = {
 export default function Header({ active }: Props) {
     const menus = [
         { name: "Home", href: "/" },
-        { name: "Calculator", href: "/contracts/calculator" },
+        { name: "Contracts", href: "/contracts" },
         { name: "Faucet", href: "/faucet" },
     ];
 
