@@ -42,9 +42,6 @@ const deployLucky = async () => {
 
     const incrementerTx = incrementer.deploy({
         data: lucky_bytecode,
-    }).catch((e : Error) => {
-        return "Error"
-        console.log(e);
     });
 
     const createTransaction = await web3.eth.accounts.signTransaction(
@@ -53,15 +50,9 @@ const deployLucky = async () => {
             gas: await incrementerTx.estimateGas(),
         },
         config.privateKey
-    ).catch((e : Error) => {
-        return "Error"
-        console.log(e);
-    })
+    );
 
-    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction).catch((e : Error) => {
-        return "Error"
-        console.log(e);
-    });
+    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
     console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
     return createReceipt.contractAddress;
 };
@@ -81,15 +72,9 @@ const deployRandomgame = async () => {
             gas: await incrementerTx.estimateGas(),
         },
         config.privateKey
-    ).catch((e : Error) => {
-        return "Error"
-        console.log(e);
-    });
+    )
 
-    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction).catch((e : Error) => {
-        return "Error"
-        console.log(e);
-    });
+    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction)
     console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
     return createReceipt.contractAddress;
 };
