@@ -1,9 +1,7 @@
 version: "3"
 services:
   app:
-    build: .
-    volumes:
-      - ./files:/app/files
+    build: ./web
     container_name: blockchain-web
     networks:
       - web
@@ -15,6 +13,11 @@ services:
       - "traefik.http.services.blockchain-web.loadbalancer.server.port=8000"
       - "traefik.http.routers.blockchain-web.tls=true"
       - "traefik.http.routers.blockchain-web.tls.certresolver=lets-encrypt"
+  chain:
+    build: ./chain
+    container_name: blockchain-chain
+    ports:
+      - "8545:8545"
 
 networks:
   web:
