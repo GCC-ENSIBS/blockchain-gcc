@@ -1,6 +1,6 @@
 import {Handlers} from "$fresh/server.ts";
 import web3 from '../../utils/web3.ts'
-import {config, lucky_abi, lucky_bytecode, randomgame_abi, randomgame_bytecode} from "../../utils/config.ts";
+import {config, lucky_abi, lucky_bytecode, reentrancy_abi, reentrancy_bytecode} from "../../utils/config.ts";
 
 // Session
 import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
@@ -22,11 +22,11 @@ export const handler: Handlers<Data, WithSession> = {
         // Deploy the contract
         switch(contract) {
             case "lucky":
-                address = await deployLucky();
+                address = await deploy(lucky_abi, lucky_bytecode);
                 ctx.state.session.set(contract, address);
                 break;
-            case "randomgame":
-                address = await deployRandomgame();
+            case "reentrancy":
+                address = await deploy(reentrancy_abi, reentrancy_bytecode);
                 ctx.state.session.set(contract, address);
                 break;
         }
@@ -35,34 +35,12 @@ export const handler: Handlers<Data, WithSession> = {
     },
 };
 
-const deployLucky = async () => {
+const deploy = async (abi: any, bytecode: any) => {
     console.log(`Attempting to deploy from account ${config.address}`);
 
-    const incrementer = new web3.eth.Contract(lucky_abi);
-
+    const incrementer = new web3.eth.Contract(abi);
     const incrementerTx = incrementer.deploy({
-        data: lucky_bytecode,
-    });
-
-    const createTransaction = await web3.eth.accounts.signTransaction(
-        {
-            data: incrementerTx.encodeABI(),
-            gas: await incrementerTx.estimateGas(),
-        },
-        config.privateKey
-    );
-
-    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
-    console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
-    return createReceipt.contractAddress;
-};
-
-const deployRandomgame = async () => {
-    console.log(`Attempting to deploy from account ${config.address}`);
-
-    const incrementer = new web3.eth.Contract(randomgame_abi);
-    const incrementerTx = incrementer.deploy({
-        data: randomgame_bytecode,
+        data: bytecode,
     });
 
     const createTransaction = await web3.eth.accounts.signTransaction(
@@ -74,7 +52,7 @@ const deployRandomgame = async () => {
         config.privateKey
     )
 
-    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction)
+    const createReceipt = await web3.eth.sendSignedTransaction(createTransaction.rawTransaction);
     console.log(`Contract deployed at address: ${createReceipt.contractAddress}`);
     return createReceipt.contractAddress;
-};
+}

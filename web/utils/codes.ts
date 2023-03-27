@@ -1,15 +1,23 @@
-export const calculator_code = `pragma solidity >=0.7.0 <0.9.0;
+export const reentrancy_code = `pragma solidity >=0.8.19;
 
-contract Calculator {
-    function arithmetic(uint num1, uint num2) public 
-    pure returns (uint sum, uint product) {
-        sum = num1 + num2;
-        product = num1 * num2;
+contract Cible {
+
+    mapping(address => uint) public balances;
+
+    function deposit() public payable {
+        balances[msg.sender] += msg.value;
     }
 
-    function multiply(uint num1, uint num2) public pure returns (uint) {
-        return num1 * num2;
+    function withdraw() public {
+        uint bal = balances[msg.sender];
+        require(bal > 0);
+
+        (bool sent, ) = msg.sender.call{value: bal}("");
+        require(sent, "Failed to send Ether");
+
+        balances[msg.sender] = 0;
     }
+
 }`
 
 export const lucky_code = `// SPDX-License-Identifier: UNLICENSED
@@ -45,50 +53,4 @@ contract Lucky {
       if(consecutiveWins[player] >= 10){solved = true;}
       return solved;
   }
-}`
-
-export const randomgame_code = `// SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.8.19;
-
-contract RandomGame{
-    uint public gammerCount;
-    bool public gameOver = false;
-    address public winner;
-
-    address[] gammers;
-
-    constructor() payable{
-        require(msg.value == 10 ether);
-    }
-
-    modifier onlyHacker{
-        require(
-            address(this).balance % 1 ether != 0 ether,
-            "this is an honnorable prize only for hacker"
-        );
-        _;
-    }
-
-    function join() public payable {
-        require(msg.value == 1 ether, "You must send 1 ether to join the game");
-        require(!gameOver, "The game is over. No more gammers allowed");
-
-        gammers.push(msg.sender);
-        gammerCount++;
-    }
-
-    function chooseWinner() public {
-        require(gammerCount > 1, "There must be at least 2 players to choose a winner");
-        require(!gameOver, "The winner has already been chosen");
-
-        uint randomIndex = uint(keccak256(abi.encodePacked(block.timestamp, block.prevrandao))) % gammerCount;
-        
-        winner = gammers[randomIndex];
-        gameOver = true;
-    }
-
-    function Th3_sp3Ci41_prize() public onlyHacker {
-        (bool sent,) = msg.sender.call{value: address(this).balance}("");
-        require(sent, "Address: unable to send value");
-    }
 }`
