@@ -1,6 +1,13 @@
 import {Handlers} from "$fresh/server.ts";
 import web3 from '../../utils/web3.ts'
-import {config, lucky_abi, lucky_bytecode, reentrancy_abi, reentrancy_bytecode} from "../../utils/config.ts";
+import {
+    bienvenue_abi, bienvenue_bytecode,
+    config,
+    lucky_abi,
+    lucky_bytecode,
+    reentrancy_abi,
+    reentrancy_bytecode
+} from "../../utils/config.ts";
 
 // Session
 import { WithSession } from "https://deno.land/x/fresh_session@0.2.0/mod.ts";
@@ -28,6 +35,10 @@ export const handler: Handlers<Data, WithSession> = {
             case "reentrancy":
                 address = await deploy(reentrancy_abi, reentrancy_bytecode);
                 ctx.state.session.set(contract, address);
+                break;
+            case "bienvenue":
+                address = await deploy(bienvenue_abi, bienvenue_bytecode)
+                ctx.state.session.set(contract, address)
                 break;
         }
 

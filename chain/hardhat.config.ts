@@ -6,6 +6,7 @@ const config: HardhatUserConfig = {
     networks: {
         hardhat: {
             blockGasLimit: 100000000429720,
+            chainId: 1337,
         }
     }
 };
