@@ -49,9 +49,9 @@ export default function Contract({contract, title, code, check}: Props) {
     return (
         <>
             <div class="flex flex-col items-center justify-center my-4 gap-4">
-                <h1 className={"text-center text-4xl font-bold "}>{title}</h1>
+                <h1 className={"text-center text-2xl font-bold "}>{title}</h1>
                 <code style={"white-space: pre-line;white-space: pre-wrap; "}
-                      className="items-center text-md font-bold mt-4 mx-auto rounded-xl bg-gray-100 p-4">
+                      className="items-center text-md font-bold mx-auto rounded-xl bg-gray-100 p-4">
                     {code}
                 </code>
                 <div class={"flex flex-row gap-4"}>
