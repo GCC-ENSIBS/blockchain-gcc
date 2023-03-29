@@ -17,6 +17,7 @@ export const handler: Handlers<Data, WithSession> = {
 };
 
 const giveETH = async (address: string) => {
+    console.log("Sending ETH to " + address);
     const gasPrice = await web3.eth.getGasPrice();
     const accounts = await web3.eth.getAccounts();
     await web3.eth.sendTransaction({

@@ -3,6 +3,9 @@ services:
   app:
     build: ./web
     container_name: blockchain-web
+    restart: always
+    depends_on:
+      - chain
     networks:
       - web
     ports:

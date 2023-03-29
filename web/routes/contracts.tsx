@@ -11,9 +11,9 @@ export default function Contracts() {
             </Head>
             <Header active="/contracts"/>
             <div class="flex flex-col items-center justify-center">
-                <Contract contract={"bienvenue"} title={"Bienvenue"} code={bienvenue_code}/>
-                <Contract contract={"lucky"} title={"Lucky"} code={lucky_code} />
-                <Contract contract={"reentrancy"} title={"Re-Entrancy"} code={reentrancy_code}/>
+                <Contract contract={"bienvenue"} title={"Bienvenue"} code={bienvenue_code} check={true}/>
+                <Contract contract={"lucky"} title={"Lucky"} code={lucky_code} check={true}/>
+                <Contract contract={"reentrancy"} title={"Re-Entrancy"} code={reentrancy_code} check={false}/>
             </div>
         </>
     );
