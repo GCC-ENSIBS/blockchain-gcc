@@ -18,7 +18,7 @@ export default function Home() {
         <h2 class={"text-center text-2xl font-bold mt-32"}>RPC Endpoint</h2>
         <h2 class={"text-center text-2xl font-italic"}>http://blockchain.gcc-ensibs.fr:8545</h2>
         <h2 className={"text-center text-2xl font-bold mt-2"}>Chain ID</h2>
-        <h2 className={"text-center text-2xl font-italic"}>12345</h2>
+        <h2 className={"text-center text-2xl font-italic"}>1337</h2>
     </>
   );
 }
