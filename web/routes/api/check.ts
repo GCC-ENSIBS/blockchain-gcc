@@ -27,11 +27,11 @@ export const handler: Handlers<Data, WithSession> = {
         switch (contract) {
             case "lucky":
                 solved = await check(address, lucky_abi);
-                flag = "flag{y0u_g0t_lucky}";
+                flag = "GCC{D4mn_LuCKy_GuY}";
                 break;
             case "bienvenue":
                 solved = await check(address, bienvenue_abi);
-                flag = "flag{welc0me_t0_web3}";
+                flag = "GCC{Bl0Ck_Ch41n_1s_C00L}";
                 break;
         }
 
