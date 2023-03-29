@@ -9,18 +9,12 @@ a
 chain/Dockerfile,2/4/24068676af69df7927df5a35eb7ed3d7dc9c2e22
 B
 chain/package.json,3/0/306090c468cc4dd6930caff3ae645914f6ae4d47
-H
-web/islands/Contract.tsx,6/2/62283a08b979e37830dd6fa3d3da22a418cfd86b
 L
 web/static/ethereum-logo.svg,0/d/0d91323d8a67405bdabca8956f6324952d58bea2
-G
-web/routes/api/check.ts,9/1/9108b2222e39e3e61776c5398fbe77c768e251f6
 B
 docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
 A
 web/utils/web3.ts,7/f/7f7ae559c0ae9bd4ecdca5b714898b2ea7dd12a6
-H
-web/routes/api/deploy.ts,0/c/0c690efb37ae2238b255da44f9d6f8f1a9de9711
 H
 web/routes/api/faucet.ts,9/1/9101b3a289cd60480c7736a535a060386305da40
 @

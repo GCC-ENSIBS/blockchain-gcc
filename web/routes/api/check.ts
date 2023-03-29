@@ -35,6 +35,7 @@ export const handler: Handlers<Data, WithSession> = {
                 break;
         }
 
+
         if(solved) {
             return new Response(JSON.stringify({ isSolved: solved, flag: flag }), { status: 200 });
         }
@@ -50,7 +51,7 @@ const check = async (contractAddress: string, contractABI: any) => {
     let solved = false;
 
     try {
-        const solved = await contract.methods.solved().call();
+        solved = await contract.methods.solved().call();
         console.log('Solved: ', solved, ' : for contract : ', contractAddress);
     } catch (error) {
         console.error('Error:', error, ' : for contract : ', contractAddress);
